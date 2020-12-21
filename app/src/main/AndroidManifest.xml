@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tonydash.aidl">
+
+    <!--自定义权限，name 随便写，对应服务的权限就好-->
+    <permission
+        android:name="com.permission.aidl"
+        android:protectionLevel="normal" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AIDL">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+        exported = "true"：可让其他 app 使用服务
+        permission： 若 exported = "true"，则需要给这个服务一个自定义的权限
+        使用方若调用该服务就要声明这个权限，否则报错
+        -->
+        <service android:name=".PersonService"
+            android:exported="true"
+            android:permission="com.permission.aidl">
+            <intent-filter>
+                <!--定义action给客户端隐式调用，可随便写-->
+                <action android:name="com.tiga.action.aidl" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
